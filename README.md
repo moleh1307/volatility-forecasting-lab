@@ -59,6 +59,7 @@ Generated data caches live under `data/` and are ignored by git. Generated repor
 - Milestone 2 summary: [`docs/milestone-2-summary.md`](docs/milestone-2-summary.md)
 - Milestone 2 release readiness: [`docs/milestone-2-release-readiness.md`](docs/milestone-2-release-readiness.md)
 - Milestone 3 plan: [`docs/milestone-3-plan.md`](docs/milestone-3-plan.md)
+- Milestone 3 summary: [`docs/milestone-3-summary.md`](docs/milestone-3-summary.md)
 - Robustness and uncertainty protocol: [`docs/robustness-uncertainty-protocol.md`](docs/robustness-uncertainty-protocol.md)
 - ML comparison review: [`docs/ml-comparison-review.md`](docs/ml-comparison-review.md)
 - Subperiod stability review: [`docs/subperiod-stability-review.md`](docs/subperiod-stability-review.md)
@@ -84,7 +85,7 @@ The first ML baseline is included for diagnostic comparison. Current results sho
 
 Milestone 2 summary: the repo now includes a first leakage-safe ML baseline. Results provide useful diagnostic contrast against statistical baselines, but the evidence is mixed across metrics and horizons.
 
-Milestone 3 has started adding robustness diagnostics. The rolling-window ranking report shows time variation in best-model rankings, and the block-bootstrap report adds pairwise forecast-error uncertainty intervals. Both should be read as stability evidence, not as broad winner claims.
+Milestone 3 adds robustness diagnostics. The rolling-window ranking report shows time variation in best-model rankings, and the block-bootstrap report adds pairwise forecast-error uncertainty intervals. These diagnostics support a more careful comparison, not a broad winner claim.
 
 ## License
 
