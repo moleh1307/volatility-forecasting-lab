@@ -7,6 +7,7 @@ from volatility_forecasting_lab.features import (
     daily_log_returns,
     expanding_mean_vol_forecast,
     forward_realized_volatility,
+    har_realized_vol_forecast,
     lagged_abs_return_forecast,
 )
 
@@ -48,8 +49,18 @@ def main() -> None:
         metrics = evaluate_forecasts(
             validation_slice(target, config.validation_start),
             {
-                name: validation_slice(frame, config.validation_start)
-                for name, frame in forecasts.items()
+                **{
+                    name: validation_slice(frame, config.validation_start)
+                    for name, frame in forecasts.items()
+                },
+                "har_daily_weekly_monthly": validation_slice(
+                    har_realized_vol_forecast(
+                        returns,
+                        horizon=horizon_config["window"],
+                        annualization_days=config.annualization_days,
+                    ),
+                    config.validation_start,
+                ),
             },
         )
         metrics_path = output_dir / f"baseline_{horizon_name}_metrics.csv"
@@ -94,6 +105,10 @@ def _render_report(
             "",
             "- yfinance data is a free public-data source and can be revised.",
             "- Baselines are intentionally simple and are not tuned for performance claims.",
+            (
+                "- The HAR-style baseline is an expanding-window OLS statistical benchmark; "
+                "it is not an optimized ML model or trading strategy."
+            ),
             (
                 "- Metrics describe forecast errors only; they are not trading, "
                 "allocation, or alpha metrics."

@@ -6,7 +6,7 @@
 
 ## Ready
 
-- VFL-006 - Add first stronger econometric volatility baseline.
+- None.
 
 ## Waiting User Decision
 
@@ -19,6 +19,7 @@
 - VFL-002 - Review target construction and leakage risks.
 - VFL-003 - Polish README and milestone 1 evaluation report for public-readiness boundary.
 - VFL-005 - Add next-week realized-volatility target and baseline report.
+- VFL-006 - Add first stronger econometric volatility baseline.
 
 ## Blocked
 

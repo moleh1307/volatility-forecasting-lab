@@ -2,7 +2,7 @@
 
 ## Status
 
-Ready
+Done
 
 ## Objective
 
@@ -20,3 +20,11 @@ Add the first stronger econometric-style volatility baseline without introducing
 - Tests cover forecast alignment.
 - Reports label the model as an econometric/statistical baseline, not an optimized strategy.
 - Claim boundary remains forecasting-methodology only.
+
+## Closeout Evidence
+
+- Added HAR-style daily/weekly/monthly realized-volatility baseline.
+- Training at timestamp `t` only uses labels whose full forward target window is observable by `t`.
+- Added test covering delayed label availability for five-day targets.
+- Regenerated next-day and next-week reports with HAR baseline rows.
+- Verified tests, lint, report existence, and claim-boundary wording.

@@ -21,6 +21,6 @@ The repo is now easier to read as a serious methodology scaffold. It is not bein
 
 ## Remaining Before Public Push
 
-- Next-week baseline target/report has been added locally; review whether a stronger econometric baseline is needed before publication.
+- HAR-style statistical baseline has been added locally; run one final public GitHub boundary decision before publication.
 - Decide whether to add a stronger econometric baseline before publication or keep it as the next milestone.
 - If publishing now, create the GitHub repo and push only after a final `pytest`, `ruff`, report regeneration, and link/claim scan.

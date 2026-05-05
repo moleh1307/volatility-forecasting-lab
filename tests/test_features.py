@@ -4,6 +4,7 @@ import pandas as pd
 from volatility_forecasting_lab.features import (
     daily_log_returns,
     forward_realized_volatility,
+    har_realized_vol_forecast,
     lagged_abs_return_forecast,
     next_day_realized_volatility,
 )
@@ -69,3 +70,20 @@ def test_five_day_forward_realized_volatility_leaves_last_five_rows_missing() ->
     assert np.isclose(target.iloc[0]["SPY"], expected_first)
     assert np.isclose(target.iloc[1]["SPY"], expected_second)
     assert target.iloc[2:]["SPY"].isna().all()
+
+
+def test_har_forecast_waits_until_forward_labels_are_observable() -> None:
+    returns = pd.DataFrame(
+        {"SPY": np.linspace(0.01, 0.08, 40)},
+        index=pd.date_range("2024-01-01", periods=40),
+    )
+
+    forecast = har_realized_vol_forecast(
+        returns,
+        horizon=5,
+        min_train_size=3,
+        annualization_days=252,
+    )
+
+    assert forecast.iloc[:28]["SPY"].isna().all()
+    assert np.isfinite(forecast.iloc[28]["SPY"])

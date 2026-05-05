@@ -12,7 +12,7 @@ The project starts conservatively: build trustworthy data, target, baseline, and
 | Market panel | SPY, QQQ, IWM, GLD, TLT |
 | Targets | Next-day and next-week realized volatility |
 | Validation | Time-ordered validation slice from 2020-01-01 |
-| Baselines | Lagged absolute return and expanding mean absolute return |
+| Baselines | Lagged absolute return, expanding mean absolute return, HAR-style statistical baseline |
 | ML models | Deferred until baseline methodology is solid |
 | GitHub publication | Local-first; public push deferred |
 
@@ -68,4 +68,4 @@ company/        JarvisOS project state and work orders
 
 ## Interpretation Boundary
 
-The current reports compare forecast errors for simple baselines within a fixed horizon, target definition, ticker, and validation slice. Lower error is better for that diagnostic only. It does not imply a useful trading signal, model superiority, alpha, or investment performance.
+The current reports compare forecast errors for baseline methods within a fixed horizon, target definition, ticker, and validation slice. Lower error is better for that diagnostic only. It does not imply a useful trading signal, model superiority, alpha, or investment performance.

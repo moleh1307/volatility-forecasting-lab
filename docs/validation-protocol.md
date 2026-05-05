@@ -13,12 +13,14 @@ Define a conservative evaluation boundary before ML models are introduced.
 - Initial metrics: MAE, RMSE, and bias by ticker.
 - Initial baselines:
   - lagged absolute return;
-  - expanding mean absolute return.
+  - expanding mean absolute return;
+  - HAR-style daily/weekly/monthly realized-volatility baseline.
 
 ## Rules
 
 - Do not random-shuffle time-series rows.
 - Do not tune baselines or ML models on the validation slice and then report it as independent evidence.
+- For horizon `h`, model training at timestamp `t` may only use target labels whose full forward window is observable by `t`.
 - Keep target labels explicit about horizon.
 - Compare models only on the same ticker, horizon, target definition, date range, and metric.
 - Treat current metrics as forecast-error diagnostics, not performance claims.
