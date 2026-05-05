@@ -10,7 +10,7 @@
 
 ## Waiting User Decision
 
-- Decide whether to add a license, create a release tag, or start the next methodology milestone.
+- Decide whether to create a release tag or start the next methodology milestone.
 
 ## Done
 

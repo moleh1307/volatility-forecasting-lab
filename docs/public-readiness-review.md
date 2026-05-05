@@ -21,7 +21,7 @@ The repo is now easier to read as a serious methodology scaffold. It is not bein
 
 ## Remaining Before Public Push
 
-- License choice is not yet recorded.
+- MIT License is recorded in `LICENSE`.
 - No release tag has been created.
 - Decide whether to add a stronger econometric baseline before publication or keep it as the next milestone.
 - If publishing now, create the GitHub repo and push only after a final `pytest`, `ruff`, report regeneration, and link/claim scan.

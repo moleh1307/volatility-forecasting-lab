@@ -14,7 +14,8 @@ The project starts conservatively: build trustworthy data, target, baseline, and
 | Validation | Time-ordered validation slice from 2020-01-01 |
 | Baselines | Lagged absolute return, expanding mean absolute return, HAR-style statistical baseline |
 | ML models | Deferred until baseline methodology is solid |
-| GitHub publication | Local-first; public push deferred |
+| GitHub publication | Public repository on GitHub |
+| License | MIT |
 
 ## Scope
 
@@ -69,3 +70,7 @@ company/        JarvisOS project state and work orders
 ## Interpretation Boundary
 
 The current reports compare forecast errors for baseline methods within a fixed horizon, target definition, ticker, and validation slice. Lower error is better for that diagnostic only. It does not imply a useful trading signal, model superiority, alpha, or investment performance.
+
+## License
+
+MIT License. See [`LICENSE`](LICENSE).
