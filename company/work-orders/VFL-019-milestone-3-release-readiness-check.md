@@ -6,11 +6,11 @@ Chief of Staff
 
 ## Status
 
-Ready
+Done
 
 ## Lifecycle State
 
-Ready
+Done
 
 ## Risk Lane
 
@@ -40,8 +40,16 @@ Check whether Milestone 3 is ready for a public release/tag decision.
 
 ## Verification Evidence
 
-Pending.
+- Added `docs/milestone-3-release-readiness.md`.
+- `uv run pytest` passed with 15 tests.
+- `uv run ruff check .` passed.
+- `uv run python scripts/run_baseline_evaluation.py` regenerated reports.
+- Required Milestone 3 files exist and are non-empty.
+- Claim-boundary scan found only negative/boundary statements.
+- GitHub repo is public with default branch `main` and MIT license.
+- Existing release tag: `v0.2.0-milestone-2`.
+- No `v0.3.0-milestone-3` tag exists.
 
 ## Closeout State
 
-Not started.
+Done. Waiting user decision: create `v0.3.0-milestone-3`, continue locally, or pause.

@@ -10,6 +10,7 @@
 - [Milestone 2 release readiness](milestone-2-release-readiness.md)
 - [Milestone 3 plan](milestone-3-plan.md)
 - [Milestone 3 summary](milestone-3-summary.md)
+- [Milestone 3 release readiness](milestone-3-release-readiness.md)
 - [Robustness and uncertainty protocol](robustness-uncertainty-protocol.md)
 - [ML feature contract](ml-feature-contract.md)
 - [ML comparison review](ml-comparison-review.md)
@@ -35,15 +36,16 @@ For the current milestone, read in this order:
 7. `docs/milestone-2-release-readiness.md`
 8. `docs/milestone-3-plan.md`
 9. `docs/milestone-3-summary.md`
-10. `docs/robustness-uncertainty-protocol.md`
-11. `docs/ml-feature-contract.md`
-12. `docs/ml-comparison-review.md`
-13. `docs/subperiod-stability-review.md`
-14. `artifacts/reports/baseline_next_day_report.md`
-15. `artifacts/reports/baseline_next_week_report.md`
-16. `artifacts/reports/subperiod_model_comparison.md`
-17. `artifacts/reports/rolling_window_model_ranking.md`
-18. `artifacts/reports/bootstrap_error_differences.md`
+10. `docs/milestone-3-release-readiness.md`
+11. `docs/robustness-uncertainty-protocol.md`
+12. `docs/ml-feature-contract.md`
+13. `docs/ml-comparison-review.md`
+14. `docs/subperiod-stability-review.md`
+15. `artifacts/reports/baseline_next_day_report.md`
+16. `artifacts/reports/baseline_next_week_report.md`
+17. `artifacts/reports/subperiod_model_comparison.md`
+18. `artifacts/reports/rolling_window_model_ranking.md`
+19. `artifacts/reports/bootstrap_error_differences.md`
 
 ## Claim Boundary
 

@@ -6,11 +6,11 @@
 
 ## Ready
 
-- VFL-019 - Milestone 3 release readiness check.
+- None.
 
 ## Waiting User Decision
 
-- None.
+- Create `v0.3.0-milestone-3`, continue locally, or pause.
 
 ## Done
 
@@ -32,6 +32,7 @@
 - VFL-016 - Implement rolling-window ranking diagnostics.
 - VFL-017 - Implement block-bootstrap error-difference diagnostics.
 - VFL-018 - Review Milestone 3 evidence and update public summary.
+- VFL-019 - Milestone 3 release readiness check.
 
 ## Planned
 
