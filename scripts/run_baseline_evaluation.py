@@ -51,6 +51,10 @@ def _render_report(metrics, validation_start: str) -> str:
             "This report compares simple baseline forecasts for next-day annualized realized "
             "volatility. It is a methodology scaffold, not an investment or trading result.",
             "",
+            "Lower MAE/RMSE indicates lower forecast error within this target, date range, "
+            "and ticker only. The table should not be read across horizons or as a trading "
+            "performance result.",
+            "",
             metrics.to_markdown(index=False, floatfmt=".6f"),
             "",
             "## Caveats",

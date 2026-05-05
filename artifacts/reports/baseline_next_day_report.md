@@ -4,6 +4,8 @@ Validation slice starts at `2020-01-01`.
 
 This report compares simple baseline forecasts for next-day annualized realized volatility. It is a methodology scaffold, not an investment or trading result.
 
+Lower MAE/RMSE indicates lower forecast error within this target, date range, and ticker only. The table should not be read across horizons or as a trading performance result.
+
 | model                     | ticker   |   observations |      mae |     rmse |      bias |
 |:--------------------------|:---------|---------------:|---------:|---------:|----------:|
 | expanding_mean_abs_return | GLD      |           1591 | 0.085858 | 0.128926 | -0.016056 |
