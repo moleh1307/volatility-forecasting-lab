@@ -10,7 +10,7 @@
 
 ## Waiting User Decision
 
-- VFL-004 - Decide public GitHub creation/push after first credible baseline.
+- Decide whether to add a license, create a release tag, or start the next methodology milestone.
 
 ## Done
 
@@ -20,6 +20,7 @@
 - VFL-003 - Polish README and milestone 1 evaluation report for public-readiness boundary.
 - VFL-005 - Add next-week realized-volatility target and baseline report.
 - VFL-006 - Add first stronger econometric volatility baseline.
+- VFL-004 - Decide public GitHub creation/push after first credible baseline.
 
 ## Blocked
 

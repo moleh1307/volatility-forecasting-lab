@@ -6,7 +6,7 @@ Review README, documentation navigation, generated report wording, and claim bou
 
 ## Result
 
-Status: not blocked for local milestone continuation; public push still deferred until Melih chooses the GitHub boundary.
+Status: public repo created and pushed after Melih approved the GitHub boundary.
 
 The repo is now easier to read as a serious methodology scaffold. It is not being presented as a completed ML comparison project.
 
@@ -17,10 +17,11 @@ The repo is now easier to read as a serious methodology scaffold. It is not bein
 - Current report describes forecast-error diagnostics only.
 - No trading system, allocation strategy, live execution, investment recommendation, performance claim, or ML superiority claim is made.
 - Raw yfinance CSV data remains ignored; tracked manifest preserves source provenance.
-- Public GitHub remote remains intentionally absent.
+- Public GitHub remote is configured at `https://github.com/moleh1307/volatility-forecasting-lab.git`.
 
 ## Remaining Before Public Push
 
-- HAR-style statistical baseline has been added locally; run one final public GitHub boundary decision before publication.
+- License choice is not yet recorded.
+- No release tag has been created.
 - Decide whether to add a stronger econometric baseline before publication or keep it as the next milestone.
 - If publishing now, create the GitHub repo and push only after a final `pytest`, `ruff`, report regeneration, and link/claim scan.
