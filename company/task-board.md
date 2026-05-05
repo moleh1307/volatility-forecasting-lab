@@ -6,7 +6,7 @@
 
 ## Ready
 
-- VFL-011 - Add rolling subperiod comparison summary.
+- VFL-012 - Decide Milestone 2 public summary or next validation diagnostic.
 
 ## Waiting User Decision
 
@@ -24,6 +24,7 @@
 - VFL-008 - Build ML Feature Matrix.
 - VFL-009 - Add first scikit-learn ML baseline.
 - VFL-010 - Review ML comparison results and public claim boundary.
+- VFL-011 - Add rolling subperiod comparison summary.
 
 ## Planned
 

@@ -8,6 +8,7 @@
 - [Milestone 2 plan](milestone-2-plan.md)
 - [ML feature contract](ml-feature-contract.md)
 - [ML comparison review](ml-comparison-review.md)
+- [Subperiod stability review](subperiod-stability-review.md)
 
 ## Reports
 
@@ -25,8 +26,10 @@ For the current milestone, read in this order:
 5. `docs/milestone-2-plan.md`
 6. `docs/ml-feature-contract.md`
 7. `docs/ml-comparison-review.md`
-8. `artifacts/reports/baseline_next_day_report.md`
-9. `artifacts/reports/baseline_next_week_report.md`
+8. `docs/subperiod-stability-review.md`
+9. `artifacts/reports/baseline_next_day_report.md`
+10. `artifacts/reports/baseline_next_week_report.md`
+11. `artifacts/reports/subperiod_model_comparison.md`
 
 ## Claim Boundary
 

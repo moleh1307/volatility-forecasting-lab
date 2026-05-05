@@ -80,3 +80,7 @@ The first ML baseline is a modest `HistGradientBoostingRegressor` with annual ex
 ## VFL-010 Update
 
 The first ML comparison review is documented in `docs/ml-comparison-review.md`. The result is mixed: the ML row often improves MAE versus HAR, but it does not consistently improve RMSE.
+
+## VFL-011 Update
+
+The subperiod stability review is documented in `docs/subperiod-stability-review.md`, with generated output in `artifacts/reports/subperiod_model_comparison.md`. The subperiod view supports keeping the ML baseline as useful diagnostic contrast, but still avoids robust model-superiority claims.

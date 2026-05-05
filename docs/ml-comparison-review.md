@@ -57,6 +57,6 @@ Avoid wording:
 
 Useful next work should be review-oriented before adding more model families:
 
-1. Add rolling subperiod comparison tables.
-2. Add model-by-horizon summary tables that count MAE/RMSE wins without marketing language.
-3. Consider a simpler linear/scikit-learn baseline only if it clarifies whether nonlinear ML is adding anything beyond HAR.
+1. Review subperiod stability before adding more model families.
+2. Consider a simpler linear/scikit-learn baseline only if it clarifies whether nonlinear ML is adding anything beyond HAR.
+3. Add uncertainty or ranking-stability diagnostics before stronger public claims.
