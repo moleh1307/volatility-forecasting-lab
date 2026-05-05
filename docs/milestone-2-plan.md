@@ -68,3 +68,7 @@ Before Milestone 2 can be called complete:
 - `VFL-008`: Build leakage-safe feature matrix for ML comparison.
 - `VFL-009`: Add first scikit-learn ML baseline with expanding/rolling training.
 - `VFL-010`: Review ML comparison results and public claim boundary.
+
+## VFL-008 Update
+
+The initial ML feature contract is now documented in `docs/ml-feature-contract.md`.

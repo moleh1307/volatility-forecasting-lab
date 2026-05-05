@@ -6,6 +6,7 @@ from volatility_forecasting_lab.features import (
     forward_realized_volatility,
     har_realized_vol_forecast,
     lagged_abs_return_forecast,
+    ml_feature_matrix,
     next_day_realized_volatility,
 )
 
@@ -87,3 +88,41 @@ def test_har_forecast_waits_until_forward_labels_are_observable() -> None:
 
     assert forecast.iloc[:28]["SPY"].isna().all()
     assert np.isfinite(forecast.iloc[28]["SPY"])
+
+
+def test_ml_feature_matrix_has_stable_ticker_feature_columns() -> None:
+    returns = pd.DataFrame(
+        {
+            "SPY": np.linspace(0.01, 0.04, 30),
+            "TLT": np.linspace(-0.02, 0.01, 30),
+        },
+        index=pd.date_range("2024-01-01", periods=30),
+    )
+
+    features = ml_feature_matrix(returns, annualization_days=252)
+
+    assert features.columns.names == [None, None]
+    assert ("SPY", "vol_mean_5d") in features.columns
+    assert ("TLT", "signed_return_mean_22d") in features.columns
+    assert np.isclose(features.loc[returns.index[0], ("SPY", "signed_return_1d")], 0.01)
+    assert np.isnan(features.loc[returns.index[3], ("SPY", "vol_mean_5d")])
+    assert np.isfinite(features.loc[returns.index[4], ("SPY", "vol_mean_5d")])
+
+
+def test_ml_feature_matrix_uses_only_current_and_past_returns() -> None:
+    returns = pd.DataFrame(
+        {"SPY": [0.01, 0.02, 0.03, 0.04, 0.50, 0.06]},
+        index=pd.date_range("2024-01-01", periods=6),
+    )
+
+    baseline_features = ml_feature_matrix(returns, annualization_days=252)
+    shocked_returns = returns.copy()
+    shocked_returns.iloc[5, 0] = 9.99
+    shocked_features = ml_feature_matrix(shocked_returns, annualization_days=252)
+
+    row_before_shock = returns.index[4]
+    pd.testing.assert_series_equal(
+        baseline_features.loc[row_before_shock],
+        shocked_features.loc[row_before_shock],
+        check_names=False,
+    )

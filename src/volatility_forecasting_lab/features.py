@@ -48,6 +48,27 @@ def expanding_mean_vol_forecast(
     return returns.abs().expanding(min_periods=min_periods).mean() * np.sqrt(annualization_days)
 
 
+def ml_feature_matrix(
+    returns: pd.DataFrame,
+    annualization_days: int = 252,
+) -> pd.DataFrame:
+    daily_vol = returns.abs() * np.sqrt(annualization_days)
+    feature_blocks = {
+        "signed_return_1d": returns,
+        "abs_return_1d": returns.abs(),
+        "vol_1d": daily_vol,
+        "vol_mean_5d": daily_vol.rolling(window=5, min_periods=5).mean(),
+        "vol_mean_22d": daily_vol.rolling(window=22, min_periods=22).mean(),
+        "vol_std_5d": daily_vol.rolling(window=5, min_periods=5).std(),
+        "vol_std_22d": daily_vol.rolling(window=22, min_periods=22).std(),
+        "signed_return_mean_5d": returns.rolling(window=5, min_periods=5).mean(),
+        "signed_return_mean_22d": returns.rolling(window=22, min_periods=22).mean(),
+    }
+    features = pd.concat(feature_blocks, axis=1)
+    features = features.swaplevel(0, 1, axis=1)
+    return features.sort_index(axis=1)
+
+
 def har_realized_vol_forecast(
     returns: pd.DataFrame,
     horizon: int,
