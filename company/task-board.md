@@ -10,7 +10,7 @@
 
 ## Waiting User Decision
 
-- Optional: decide whether to create release tag `v0.2.0-milestone-2`.
+- None.
 
 ## Done
 
@@ -27,6 +27,7 @@
 - VFL-011 - Add rolling subperiod comparison summary.
 - VFL-012 - Decide Milestone 2 public summary or next validation diagnostic.
 - VFL-013 - Milestone 2 release readiness check.
+- VFL-014 - Create release tag v0.2.0-milestone-2.
 
 ## Planned
 

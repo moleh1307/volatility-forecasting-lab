@@ -6,9 +6,9 @@ Final readiness check for the public Milestone 2 state.
 
 ## Result
 
-Status: ready for an optional release tag, pending explicit user approval.
+Status: release tag approved and created after readiness passed.
 
-No release tag was created in this check.
+Release tag: `v0.2.0-milestone-2`
 
 ## Verification
 
@@ -33,15 +33,15 @@ No release tag was created in this check.
 - Default branch: `main`
 - License: MIT
 - Local/remote `main`: `5702a97`
-- Existing releases: none found by `gh release list --limit 10`
+- Existing releases before tag creation: none found by `gh release list --limit 10`
 
 ## Caveats
 
 - Results are diagnostic and mixed across metrics/horizons.
 - No trading, allocation, alpha, investment, or live-strategy claim is supported.
 - No robust ML-superiority claim is supported.
-- Release tagging remains a separate user decision.
+- The tag marks a reproducible methodology milestone, not a performance or investment claim.
 
-## Suggested Tag If Approved Later
+## Tag
 
 `v0.2.0-milestone-2`
