@@ -10,7 +10,7 @@
 
 ## Waiting User Decision
 
-- Run Milestone 4 release readiness, continue diagnostic refinement, or pause.
+- Create `v0.4.0-milestone-4`, continue locally, or pause.
 
 ## Done
 
@@ -35,6 +35,7 @@
 - VFL-019 - Milestone 3 release readiness check.
 - VFL-020 - Add GARCH econometric baseline.
 - VFL-021 - Review Milestone 4 model-comparison evidence.
+- VFL-022 - Milestone 4 release readiness check.
 
 ## Planned
 

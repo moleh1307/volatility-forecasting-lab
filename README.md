@@ -63,6 +63,7 @@ Generated data caches live under `data/` and are ignored by git. Generated repor
 - Milestone 3 release readiness: [`docs/milestone-3-release-readiness.md`](docs/milestone-3-release-readiness.md)
 - Milestone 4 plan: [`docs/milestone-4-plan.md`](docs/milestone-4-plan.md)
 - Milestone 4 comparison review: [`docs/milestone-4-comparison-review.md`](docs/milestone-4-comparison-review.md)
+- Milestone 4 release readiness: [`docs/milestone-4-release-readiness.md`](docs/milestone-4-release-readiness.md)
 - Robustness and uncertainty protocol: [`docs/robustness-uncertainty-protocol.md`](docs/robustness-uncertainty-protocol.md)
 - ML comparison review: [`docs/ml-comparison-review.md`](docs/ml-comparison-review.md)
 - Subperiod stability review: [`docs/subperiod-stability-review.md`](docs/subperiod-stability-review.md)
