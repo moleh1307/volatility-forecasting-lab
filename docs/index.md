@@ -5,6 +5,7 @@
 - [Target definitions](target-definitions.md)
 - [Validation protocol](validation-protocol.md)
 - [Target and leakage review](target-leakage-review.md)
+- [Milestone 2 plan](milestone-2-plan.md)
 
 ## Reports
 
@@ -19,8 +20,9 @@ For the current milestone, read in this order:
 2. `docs/target-definitions.md`
 3. `docs/validation-protocol.md`
 4. `docs/target-leakage-review.md`
-5. `artifacts/reports/baseline_next_day_report.md`
-6. `artifacts/reports/baseline_next_week_report.md`
+5. `docs/milestone-2-plan.md`
+6. `artifacts/reports/baseline_next_day_report.md`
+7. `artifacts/reports/baseline_next_week_report.md`
 
 ## Claim Boundary
 

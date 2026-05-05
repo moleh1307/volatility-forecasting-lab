@@ -2,7 +2,7 @@
 
 ## Active
 
-- None.
+- VFL-008 - Build ML Feature Matrix.
 
 ## Ready
 
@@ -10,7 +10,7 @@
 
 ## Waiting User Decision
 
-- Decide whether to create a release tag or start the next methodology milestone.
+- Optional: decide whether to create a release tag for the current public baseline milestone.
 
 ## Done
 
@@ -21,6 +21,11 @@
 - VFL-005 - Add next-week realized-volatility target and baseline report.
 - VFL-006 - Add first stronger econometric volatility baseline.
 - VFL-004 - Decide public GitHub creation/push after first credible baseline.
+
+## Planned
+
+- VFL-009 - Add first scikit-learn ML baseline.
+- VFL-010 - Review ML comparison results and public claim boundary.
 
 ## Blocked
 

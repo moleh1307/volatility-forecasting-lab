@@ -13,7 +13,7 @@ The project starts conservatively: build trustworthy data, target, baseline, and
 | Targets | Next-day and next-week realized volatility |
 | Validation | Time-ordered validation slice from 2020-01-01 |
 | Baselines | Lagged absolute return, expanding mean absolute return, HAR-style statistical baseline |
-| ML models | Deferred until baseline methodology is solid |
+| ML models | Milestone 2 planned; not implemented yet |
 | GitHub publication | Public repository on GitHub |
 | License | MIT |
 
@@ -53,6 +53,7 @@ Generated data caches live under `data/` and are ignored by git. Generated repor
 - Validation protocol: [`docs/validation-protocol.md`](docs/validation-protocol.md)
 - Target/leakage review: [`docs/target-leakage-review.md`](docs/target-leakage-review.md)
 - Documentation index: [`docs/index.md`](docs/index.md)
+- Milestone 2 plan: [`docs/milestone-2-plan.md`](docs/milestone-2-plan.md)
 
 ## Repository Layout
 
