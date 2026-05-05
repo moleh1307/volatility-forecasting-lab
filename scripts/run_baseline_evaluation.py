@@ -8,6 +8,7 @@ from volatility_forecasting_lab.features import (
     expanding_mean_vol_forecast,
     forward_realized_volatility,
     har_realized_vol_forecast,
+    hist_gradient_boosting_vol_forecast,
     lagged_abs_return_forecast,
 )
 
@@ -61,6 +62,15 @@ def main() -> None:
                     ),
                     config.validation_start,
                 ),
+                "hist_gradient_boosting": validation_slice(
+                    hist_gradient_boosting_vol_forecast(
+                        returns,
+                        horizon=horizon_config["window"],
+                        validation_start=config.validation_start,
+                        annualization_days=config.annualization_days,
+                    ),
+                    config.validation_start,
+                ),
             },
         )
         metrics_path = output_dir / f"baseline_{horizon_name}_metrics.csv"
@@ -108,6 +118,10 @@ def _render_report(
             (
                 "- The HAR-style baseline is an expanding-window OLS statistical benchmark; "
                 "it is not an optimized ML model or trading strategy."
+            ),
+            (
+                "- The histogram gradient boosting row is a modest scikit-learn ML baseline "
+                "with annual expanding-window refits, not a tuned model selection result."
             ),
             (
                 "- Metrics describe forecast errors only; they are not trading, "

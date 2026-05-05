@@ -13,7 +13,7 @@ The project starts conservatively: build trustworthy data, target, baseline, and
 | Targets | Next-day and next-week realized volatility |
 | Validation | Time-ordered validation slice from 2020-01-01 |
 | Baselines | Lagged absolute return, expanding mean absolute return, HAR-style statistical baseline |
-| ML models | Milestone 2 planned; not implemented yet |
+| ML models | First modest scikit-learn baseline added |
 | GitHub publication | Public repository on GitHub |
 | License | MIT |
 

@@ -2,7 +2,7 @@
 
 ## Active
 
-- VFL-009 - Add first scikit-learn ML baseline.
+- VFL-010 - Review ML comparison results and public claim boundary.
 
 ## Ready
 
@@ -22,10 +22,11 @@
 - VFL-006 - Add first stronger econometric volatility baseline.
 - VFL-004 - Decide public GitHub creation/push after first credible baseline.
 - VFL-008 - Build ML Feature Matrix.
+- VFL-009 - Add first scikit-learn ML baseline.
 
 ## Planned
 
-- VFL-010 - Review ML comparison results and public claim boundary.
+- None.
 
 ## Blocked
 

@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import numpy as np
 import pandas as pd
+from sklearn.ensemble import HistGradientBoostingRegressor
 
 
 def daily_log_returns(prices: pd.DataFrame) -> pd.DataFrame:
@@ -67,6 +68,72 @@ def ml_feature_matrix(
     features = pd.concat(feature_blocks, axis=1)
     features = features.swaplevel(0, 1, axis=1)
     return features.sort_index(axis=1)
+
+
+def hist_gradient_boosting_vol_forecast(
+    returns: pd.DataFrame,
+    horizon: int,
+    validation_start: str,
+    min_train_size: int = 756,
+    retrain_frequency: int = 252,
+    annualization_days: int = 252,
+) -> pd.DataFrame:
+    if horizon < 1:
+        raise ValueError("horizon must be at least 1")
+
+    target = forward_realized_volatility(
+        returns,
+        horizon=horizon,
+        annualization_days=annualization_days,
+    )
+    features = ml_feature_matrix(returns, annualization_days=annualization_days)
+    forecasts = pd.DataFrame(index=returns.index, columns=returns.columns, dtype=float)
+    validation_start_ts = pd.Timestamp(validation_start)
+
+    for ticker in returns.columns:
+        ticker_features = features[ticker]
+        target_series = target[ticker]
+        model: HistGradientBoostingRegressor | None = None
+        last_train_position: int | None = None
+
+        for row_position, row_date in enumerate(returns.index):
+            if row_date < validation_start_ts:
+                continue
+
+            latest_known_target_position = row_position - horizon
+            if latest_known_target_position < 0:
+                continue
+
+            current_features = ticker_features.iloc[[row_position]].dropna()
+            if current_features.empty:
+                continue
+
+            should_retrain = (
+                model is None
+                or last_train_position is None
+                or latest_known_target_position - last_train_position >= retrain_frequency
+            )
+            if should_retrain:
+                train_features = ticker_features.iloc[: latest_known_target_position + 1]
+                train_target = target_series.iloc[: latest_known_target_position + 1]
+                train_frame = train_features.assign(target=train_target).dropna()
+                if len(train_frame) < min_train_size:
+                    continue
+
+                model = HistGradientBoostingRegressor(
+                    max_iter=30,
+                    learning_rate=0.05,
+                    max_leaf_nodes=7,
+                    l2_regularization=0.01,
+                    random_state=0,
+                )
+                model.fit(train_frame[ticker_features.columns], train_frame["target"])
+                last_train_position = latest_known_target_position
+
+            if model is not None:
+                forecasts.at[row_date, ticker] = float(model.predict(current_features)[0])
+
+    return forecasts
 
 
 def har_realized_vol_forecast(

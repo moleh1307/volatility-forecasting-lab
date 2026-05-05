@@ -5,6 +5,7 @@ from volatility_forecasting_lab.features import (
     daily_log_returns,
     forward_realized_volatility,
     har_realized_vol_forecast,
+    hist_gradient_boosting_vol_forecast,
     lagged_abs_return_forecast,
     ml_feature_matrix,
     next_day_realized_volatility,
@@ -126,3 +127,38 @@ def test_ml_feature_matrix_uses_only_current_and_past_returns() -> None:
         shocked_features.loc[row_before_shock],
         check_names=False,
     )
+
+
+def test_hist_gradient_boosting_forecast_respects_label_availability() -> None:
+    returns = pd.DataFrame(
+        {
+            "SPY": np.sin(np.linspace(0.0, 8.0, 90)) / 100,
+        },
+        index=pd.date_range("2024-01-01", periods=90),
+    )
+
+    forecast = hist_gradient_boosting_vol_forecast(
+        returns,
+        horizon=5,
+        validation_start="2024-02-01",
+        min_train_size=20,
+        retrain_frequency=10,
+        annualization_days=252,
+    )
+
+    assert forecast.loc[: "2024-01-31", "SPY"].isna().all()
+    first_valid_date = forecast["SPY"].first_valid_index()
+    assert first_valid_date is not None
+
+    first_valid_position = returns.index.get_loc(first_valid_date)
+    latest_known_position = first_valid_position - 5
+    feature_rows = ml_feature_matrix(returns, annualization_days=252)["SPY"]
+    target = forward_realized_volatility(returns, horizon=5, annualization_days=252)["SPY"]
+    train_frame = (
+        feature_rows.iloc[: latest_known_position + 1]
+        .assign(target=target.iloc[: latest_known_position + 1])
+        .dropna()
+    )
+
+    assert len(train_frame) >= 20
+    assert forecast.iloc[:first_valid_position]["SPY"].isna().all()

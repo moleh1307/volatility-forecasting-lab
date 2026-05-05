@@ -72,3 +72,7 @@ Before Milestone 2 can be called complete:
 ## VFL-008 Update
 
 The initial ML feature contract is now documented in `docs/ml-feature-contract.md`.
+
+## VFL-009 Update
+
+The first ML baseline is a modest `HistGradientBoostingRegressor` with annual expanding-window refits. It is included as a diagnostic ML comparison row, not as a tuned model-selection result.
