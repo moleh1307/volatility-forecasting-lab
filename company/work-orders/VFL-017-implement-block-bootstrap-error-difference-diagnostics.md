@@ -6,11 +6,11 @@ Research Engineer
 
 ## Status
 
-Active
+Done
 
 ## Lifecycle State
 
-Active
+Done
 
 ## Risk Lane
 
@@ -46,8 +46,18 @@ Implement the block-bootstrap pairwise error-difference diagnostic defined in
 
 ## Verification Evidence
 
-Pending.
+- Added `block_bootstrap_error_differences` evaluation helper using paired
+  model errors and moving contiguous date blocks.
+- Added tests for difference sign convention and reproducibility.
+- Updated `scripts/run_baseline_evaluation.py` to generate block-bootstrap
+  diagnostics for the protocol's three pairwise comparisons.
+- Generated `artifacts/reports/bootstrap_error_differences.md`.
+- Generated ignored CSV diagnostic:
+  - `artifacts/reports/bootstrap_error_differences.csv`
+- `uv run pytest` passed with 15 tests.
+- `uv run ruff check .` passed.
+- `uv run python scripts/run_baseline_evaluation.py` regenerated reports and wrote 60 bootstrap rows.
 
 ## Closeout State
 
-Not started.
+Done. Next work order is `VFL-018 - Review Milestone 3 evidence and update public summary`.

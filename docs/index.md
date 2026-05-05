@@ -19,6 +19,7 @@
 - [Baseline next-day volatility forecast evaluation](../artifacts/reports/baseline_next_day_report.md)
 - [Baseline next-week volatility forecast evaluation](../artifacts/reports/baseline_next_week_report.md)
 - [Rolling-window model ranking](../artifacts/reports/rolling_window_model_ranking.md)
+- [Block-bootstrap error differences](../artifacts/reports/bootstrap_error_differences.md)
 
 ## Read First
 
@@ -40,6 +41,7 @@ For the current milestone, read in this order:
 14. `artifacts/reports/baseline_next_week_report.md`
 15. `artifacts/reports/subperiod_model_comparison.md`
 16. `artifacts/reports/rolling_window_model_ranking.md`
+17. `artifacts/reports/bootstrap_error_differences.md`
 
 ## Claim Boundary
 

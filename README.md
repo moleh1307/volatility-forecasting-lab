@@ -50,6 +50,7 @@ Generated data caches live under `data/` and are ignored by git. Generated repor
 - Next-day baseline report: [`artifacts/reports/baseline_next_day_report.md`](artifacts/reports/baseline_next_day_report.md)
 - Next-week baseline report: [`artifacts/reports/baseline_next_week_report.md`](artifacts/reports/baseline_next_week_report.md)
 - Rolling-window ranking report: [`artifacts/reports/rolling_window_model_ranking.md`](artifacts/reports/rolling_window_model_ranking.md)
+- Block-bootstrap error-difference report: [`artifacts/reports/bootstrap_error_differences.md`](artifacts/reports/bootstrap_error_differences.md)
 - Target definitions: [`docs/target-definitions.md`](docs/target-definitions.md)
 - Validation protocol: [`docs/validation-protocol.md`](docs/validation-protocol.md)
 - Target/leakage review: [`docs/target-leakage-review.md`](docs/target-leakage-review.md)
@@ -83,7 +84,7 @@ The first ML baseline is included for diagnostic comparison. Current results sho
 
 Milestone 2 summary: the repo now includes a first leakage-safe ML baseline. Results provide useful diagnostic contrast against statistical baselines, but the evidence is mixed across metrics and horizons.
 
-Milestone 3 has started adding robustness diagnostics. The rolling-window ranking report shows time variation in best-model rankings and should be read as stability evidence, not as a broad winner claim.
+Milestone 3 has started adding robustness diagnostics. The rolling-window ranking report shows time variation in best-model rankings, and the block-bootstrap report adds pairwise forecast-error uncertainty intervals. Both should be read as stability evidence, not as broad winner claims.
 
 ## License
 

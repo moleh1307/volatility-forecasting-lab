@@ -5,6 +5,7 @@ import pandas as pd
 from volatility_forecasting_lab.config import load_config
 from volatility_forecasting_lab.data import load_adjusted_prices
 from volatility_forecasting_lab.evaluation import (
+    block_bootstrap_error_differences,
     evaluate_forecasts,
     evaluate_forecasts_by_period,
     forecast_error_panel,
@@ -32,6 +33,12 @@ HORIZONS = {
         "description": "overlapping five-trading-day annualized realized volatility",
     },
 }
+
+BOOTSTRAP_COMPARISONS = [
+    ("hist_gradient_boosting", "har_daily_weekly_monthly"),
+    ("hist_gradient_boosting", "expanding_mean_abs_return"),
+    ("har_daily_weekly_monthly", "expanding_mean_abs_return"),
+]
 
 
 def main() -> None:
@@ -133,6 +140,18 @@ def main() -> None:
     print(
         f"Wrote {len(rolling_rankings)} rows to "
         f"{output_dir / 'rolling_window_model_ranking.csv'}"
+    )
+    bootstrap_differences = block_bootstrap_error_differences(
+        all_errors,
+        comparisons=BOOTSTRAP_COMPARISONS,
+    )
+    bootstrap_differences.to_csv(output_dir / "bootstrap_error_differences.csv", index=False)
+    (output_dir / "bootstrap_error_differences.md").write_text(
+        _render_bootstrap_report(bootstrap_differences)
+    )
+    print(
+        f"Wrote {len(bootstrap_differences)} rows to "
+        f"{output_dir / 'bootstrap_error_differences.csv'}"
     )
 
 
@@ -305,6 +324,95 @@ def _render_rolling_window_report(rankings) -> str:
             "Rolling-window rankings are intended to expose time variation in forecast-error "
             "behavior. A higher win count or lower average rank should not be compressed into "
             "a broad model-superiority claim without matching uncertainty evidence.",
+        ]
+    )
+
+
+def _render_bootstrap_report(differences) -> str:
+    if differences.empty:
+        return "\n".join(
+            [
+                "# Block-Bootstrap Error Differences",
+                "",
+                "No bootstrap error differences were generated. Check comparison model names "
+                "and forecast-error panel coverage.",
+            ]
+        )
+
+    summary = differences.copy()
+    summary["interval_crosses_zero"] = (summary["ci_lower"] <= 0) & (summary["ci_upper"] >= 0)
+    summary["mostly_negative"] = summary["share_negative"] >= 0.95
+    summary_table = summary[
+        [
+            "horizon",
+            "metric",
+            "model_a",
+            "model_b",
+            "mostly_negative",
+            "interval_crosses_zero",
+        ]
+    ]
+    summary_table = (
+        summary_table.groupby(
+            [
+                "horizon",
+                "metric",
+                "model_a",
+                "model_b",
+                "mostly_negative",
+                "interval_crosses_zero",
+            ]
+        )
+        .size()
+        .reset_index(name="ticker_count")
+        .sort_values(["horizon", "metric", "model_a", "model_b", "mostly_negative"])
+    )
+
+    display = differences[
+        [
+            "horizon",
+            "ticker",
+            "metric",
+            "model_a",
+            "model_b",
+            "observed_difference",
+            "ci_lower",
+            "ci_upper",
+            "share_negative",
+        ]
+    ]
+
+    return "\n".join(
+        [
+            "# Block-Bootstrap Error Differences",
+            "",
+            "This report estimates uncertainty around pairwise forecast-error differences "
+            "using contiguous validation-date block resampling.",
+            "",
+            "Difference convention: `metric(model_a) - metric(model_b)`. Negative values "
+            "mean `model_a` had lower forecast error for that diagnostic.",
+            "",
+            "Defaults: 20-trading-day blocks, 1,000 bootstrap resamples, fixed random seed, "
+            "and 95% percentile intervals.",
+            "",
+            "These intervals are forecast-error uncertainty diagnostics only. They are not "
+            "trading, allocation, alpha, investment, or economic-value evidence.",
+            "",
+            "## Summary Counts",
+            "",
+            summary_table.to_markdown(index=False),
+            "",
+            "## Pairwise Error Differences",
+            "",
+            display.to_markdown(index=False, floatfmt=".6f"),
+            "",
+            "## Interpretation",
+            "",
+            "`share_negative` is the share of bootstrap resamples where `model_a` has lower "
+            "error than `model_b`. Intervals crossing zero should be treated as weak or "
+            "mixed evidence. Even intervals mostly on one side of zero remain conditional "
+            "method-comparison evidence for the named horizon, ticker, metric, and validation "
+            "design only.",
         ]
     )
 

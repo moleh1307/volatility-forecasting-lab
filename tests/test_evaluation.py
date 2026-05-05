@@ -1,6 +1,7 @@
 import pandas as pd
 
 from volatility_forecasting_lab.evaluation import (
+    block_bootstrap_error_differences,
     evaluate_forecasts,
     evaluate_forecasts_by_period,
     forecast_error_panel,
@@ -90,3 +91,54 @@ def test_rolling_window_model_ranking_orders_lower_error_first() -> None:
     ].sort_values("rank")
     assert list(mae_rankings["model"]) == ["better", "worse"]
     assert list(mae_rankings["rank"]) == [1, 2]
+
+
+def test_block_bootstrap_error_differences_uses_model_a_minus_model_b() -> None:
+    dates = pd.date_range("2024-01-01", periods=8)
+    target = pd.DataFrame({"SPY": [1.0] * 8}, index=dates)
+    forecasts = {
+        "better": pd.DataFrame({"SPY": [1.0] * 8}, index=dates),
+        "worse": pd.DataFrame({"SPY": [1.5] * 8}, index=dates),
+    }
+    panel = forecast_error_panel(target, forecasts, horizon="next_day")
+
+    differences = block_bootstrap_error_differences(
+        panel,
+        comparisons=[("better", "worse")],
+        block_length=2,
+        resamples=25,
+        random_seed=1,
+    )
+
+    mae = differences[differences["metric"] == "mae"].iloc[0]
+    rmse = differences[differences["metric"] == "rmse"].iloc[0]
+    assert mae["observed_difference"] == -0.5
+    assert rmse["observed_difference"] == -0.5
+    assert mae["share_negative"] == 1.0
+
+
+def test_block_bootstrap_error_differences_is_reproducible() -> None:
+    dates = pd.date_range("2024-01-01", periods=10)
+    target = pd.DataFrame({"SPY": [1.0] * 10}, index=dates)
+    forecasts = {
+        "model_a": pd.DataFrame({"SPY": [1.0, 1.2, 0.9, 1.1, 1.3] * 2}, index=dates),
+        "model_b": pd.DataFrame({"SPY": [0.8, 1.1, 1.4, 1.0, 1.2] * 2}, index=dates),
+    }
+    panel = forecast_error_panel(target, forecasts, horizon="next_day")
+
+    first = block_bootstrap_error_differences(
+        panel,
+        comparisons=[("model_a", "model_b")],
+        block_length=3,
+        resamples=50,
+        random_seed=7,
+    )
+    second = block_bootstrap_error_differences(
+        panel,
+        comparisons=[("model_a", "model_b")],
+        block_length=3,
+        resamples=50,
+        random_seed=7,
+    )
+
+    pd.testing.assert_frame_equal(first, second)
