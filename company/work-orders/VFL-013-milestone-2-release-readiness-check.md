@@ -2,7 +2,7 @@
 
 ## Status
 
-Ready
+Done
 
 ## Objective
 
@@ -20,3 +20,10 @@ Run a final readiness check for the public Milestone 2 state before deciding whe
 - Readiness report is added under `docs/`.
 - Any blockers are documented.
 - Release tag remains a separate user decision.
+
+## Closeout Evidence
+
+- Added `docs/milestone-2-release-readiness.md`.
+- Verified tests, lint, report regeneration, required files, claim-boundary scan, GitHub visibility/default branch/license, remote `main`, and release list.
+- No blockers found for an optional release tag.
+- No release tag was created.

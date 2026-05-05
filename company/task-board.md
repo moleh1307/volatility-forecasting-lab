@@ -6,11 +6,11 @@
 
 ## Ready
 
-- VFL-013 - Milestone 2 release readiness check.
+- None.
 
 ## Waiting User Decision
 
-- Optional: decide whether to create a release tag for the current public baseline milestone.
+- Optional: decide whether to create release tag `v0.2.0-milestone-2`.
 
 ## Done
 
@@ -26,6 +26,7 @@
 - VFL-010 - Review ML comparison results and public claim boundary.
 - VFL-011 - Add rolling subperiod comparison summary.
 - VFL-012 - Decide Milestone 2 public summary or next validation diagnostic.
+- VFL-013 - Milestone 2 release readiness check.
 
 ## Planned
 
