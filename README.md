@@ -56,6 +56,7 @@ Generated data caches live under `data/` and are ignored by git. Generated repor
 - Milestone 2 plan: [`docs/milestone-2-plan.md`](docs/milestone-2-plan.md)
 - Milestone 2 summary: [`docs/milestone-2-summary.md`](docs/milestone-2-summary.md)
 - Milestone 2 release readiness: [`docs/milestone-2-release-readiness.md`](docs/milestone-2-release-readiness.md)
+- Milestone 3 plan: [`docs/milestone-3-plan.md`](docs/milestone-3-plan.md)
 - ML comparison review: [`docs/ml-comparison-review.md`](docs/ml-comparison-review.md)
 - Subperiod stability review: [`docs/subperiod-stability-review.md`](docs/subperiod-stability-review.md)
 

@@ -8,6 +8,7 @@
 - [Milestone 2 plan](milestone-2-plan.md)
 - [Milestone 2 summary](milestone-2-summary.md)
 - [Milestone 2 release readiness](milestone-2-release-readiness.md)
+- [Milestone 3 plan](milestone-3-plan.md)
 - [ML feature contract](ml-feature-contract.md)
 - [ML comparison review](ml-comparison-review.md)
 - [Subperiod stability review](subperiod-stability-review.md)
@@ -28,12 +29,13 @@ For the current milestone, read in this order:
 5. `docs/milestone-2-plan.md`
 6. `docs/milestone-2-summary.md`
 7. `docs/milestone-2-release-readiness.md`
-8. `docs/ml-feature-contract.md`
-9. `docs/ml-comparison-review.md`
-10. `docs/subperiod-stability-review.md`
-11. `artifacts/reports/baseline_next_day_report.md`
-12. `artifacts/reports/baseline_next_week_report.md`
-13. `artifacts/reports/subperiod_model_comparison.md`
+8. `docs/milestone-3-plan.md`
+9. `docs/ml-feature-contract.md`
+10. `docs/ml-comparison-review.md`
+11. `docs/subperiod-stability-review.md`
+12. `artifacts/reports/baseline_next_day_report.md`
+13. `artifacts/reports/baseline_next_week_report.md`
+14. `artifacts/reports/subperiod_model_comparison.md`
 
 ## Claim Boundary
 

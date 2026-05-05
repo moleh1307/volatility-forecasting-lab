@@ -2,7 +2,7 @@
 
 ## Active
 
-- None.
+- VFL-015 - Design robustness and uncertainty protocol.
 
 ## Ready
 
@@ -31,7 +31,9 @@
 
 ## Planned
 
-- None.
+- VFL-016 - Implement rolling-window ranking diagnostics.
+- VFL-017 - Implement block-bootstrap error-difference diagnostics.
+- VFL-018 - Review Milestone 3 evidence and update public summary.
 
 ## Blocked
 
