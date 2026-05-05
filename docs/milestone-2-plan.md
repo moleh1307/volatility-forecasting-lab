@@ -84,3 +84,7 @@ The first ML comparison review is documented in `docs/ml-comparison-review.md`. 
 ## VFL-011 Update
 
 The subperiod stability review is documented in `docs/subperiod-stability-review.md`, with generated output in `artifacts/reports/subperiod_model_comparison.md`. The subperiod view supports keeping the ML baseline as useful diagnostic contrast, but still avoids robust model-superiority claims.
+
+## VFL-012 Update
+
+The Milestone 2 public summary is documented in `docs/milestone-2-summary.md`.
