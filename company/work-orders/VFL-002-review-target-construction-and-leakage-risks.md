@@ -2,7 +2,7 @@
 
 ## Status
 
-Active
+Done
 
 ## Objective
 
@@ -25,3 +25,11 @@ Review the next-day realized-volatility target construction and baseline alignme
 ## Claim Boundary
 
 The review can promote the scaffold as ready for further methodology work, but not as evidence of useful model performance.
+
+## Closeout Evidence
+
+- Added `forward_realized_volatility` to support future next-week targets without changing next-day semantics.
+- Added tests proving the forward target uses future returns only and leaves incomplete horizon windows as missing.
+- Added `docs/target-leakage-review.md`.
+- Verified `uv run pytest` and `uv run ruff check .` after the patch.
+- Review outcome: target construction is coherent enough for milestone 1 continuation, but not public performance evidence.
