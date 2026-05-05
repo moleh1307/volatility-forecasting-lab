@@ -1,0 +1,31 @@
+import numpy as np
+import pandas as pd
+
+from volatility_forecasting_lab.features import (
+    daily_log_returns,
+    lagged_abs_return_forecast,
+    next_day_realized_volatility,
+)
+
+
+def test_next_day_realized_volatility_uses_future_return_as_target() -> None:
+    prices = pd.DataFrame(
+        {"SPY": [100.0, 101.0, 99.0]},
+        index=pd.date_range("2024-01-01", periods=3),
+    )
+    returns = daily_log_returns(prices)
+
+    target = next_day_realized_volatility(returns, annualization_days=252)
+
+    expected_second_return_vol = abs(np.log(99.0 / 101.0)) * np.sqrt(252)
+    assert np.isclose(target.iloc[0]["SPY"], expected_second_return_vol)
+    assert np.isnan(target.iloc[-1]["SPY"])
+
+
+def test_lagged_abs_return_forecast_uses_current_known_return() -> None:
+    prices = pd.DataFrame({"SPY": [100.0, 101.0]}, index=pd.date_range("2024-01-01", periods=2))
+    returns = daily_log_returns(prices)
+
+    forecast = lagged_abs_return_forecast(returns, annualization_days=252)
+
+    assert np.isclose(forecast.iloc[0]["SPY"], abs(np.log(101.0 / 100.0)) * np.sqrt(252))

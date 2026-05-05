@@ -1,0 +1,15 @@
+data:
+  start_date: "2010-01-01"
+  tickers:
+    - SPY
+    - QQQ
+    - IWM
+    - GLD
+    - TLT
+targets:
+  realized_vol_windows:
+    next_day: 1
+    next_week: 5
+evaluation:
+  validation_start: "2020-01-01"
+  annualization_days: 252

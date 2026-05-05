@@ -1,0 +1,21 @@
+source: yfinance
+retrieved_at_utc: '2026-05-05T06:41:39.418149+00:00'
+tickers:
+- SPY
+- QQQ
+- IWM
+- GLD
+- TLT
+start_date: '2010-01-01'
+rows: 4108
+columns:
+- SPY
+- QQQ
+- IWM
+- GLD
+- TLT
+min_date: '2010-01-04'
+max_date: '2026-05-04'
+caveats:
+- yfinance is a free public-data interface and may revise historical adjusted prices.
+- This cache is for research methodology, not production trading or investment advice.
