@@ -12,9 +12,9 @@ Forecasts available at date `t` may use information known through date `t`, but 
 
 The implementation routes this through the generic forward realized-volatility target with `horizon = 1`.
 
-## Planned Extension
+## Next-Week Target
 
-The target pipeline is horizon-aware so next-week realized volatility can be added without changing the validation contract.
+The next-week target uses an overlapping five-trading-day forward window.
 
 For horizon `h`, the planned target definition is:
 
@@ -22,12 +22,9 @@ For horizon `h`, the planned target definition is:
 target_t,h = sqrt((252 / h) * sum_{i=1..h}(log_return_{t+i}^2))
 ```
 
-A later next-week report should still define:
+For next-week reports, `h = 5`.
 
-- whether the five-trading-day window is overlapping or non-overlapping;
-- why the sum-of-squares realized-volatility target is the chosen definition;
-- how missing market holidays are handled;
-- how the horizon affects validation rows and report labels.
+This means each forecast timestamp `t` is scored against the next five available trading-day returns. The final five rows do not have complete forward windows and are excluded from metric calculations by the non-null evaluation mask.
 
 ## Claim Boundary
 

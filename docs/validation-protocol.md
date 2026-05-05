@@ -9,7 +9,7 @@ Define a conservative evaluation boundary before ML models are introduced.
 - Data source: cached `yfinance` adjusted close data for SPY, QQQ, IWM, GLD, and TLT.
 - Training/evaluation style: time-ordered validation only.
 - Current validation slice: rows from `2020-01-01` onward.
-- Initial target: next-day annualized realized volatility.
+- Initial targets: next-day annualized realized volatility and overlapping next-week annualized realized volatility.
 - Initial metrics: MAE, RMSE, and bias by ticker.
 - Initial baselines:
   - lagged absolute return;

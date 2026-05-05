@@ -1,6 +1,7 @@
 # Baseline Next-Day Volatility Forecast Evaluation
 
 Validation slice starts at `2020-01-01`.
+Target horizon: `1` trading day(s).
 
 This report compares simple baseline forecasts for next-day annualized realized volatility. It is a methodology scaffold, not an investment or trading result.
 

@@ -2,7 +2,7 @@
 
 ## Status
 
-Ready
+Done
 
 ## Objective
 
@@ -21,3 +21,11 @@ Add a next-week realized-volatility target and simple baseline evaluation withou
 - Report names and docs make the horizon clear.
 - Metrics compare models only within the same horizon.
 - Claim boundary remains forecasting-methodology only.
+
+## Closeout Evidence
+
+- Extended `scripts/run_baseline_evaluation.py` to generate separate next-day and next-week reports.
+- Added five-trading-day target alignment test.
+- Updated README and docs to list next-day and next-week reports separately.
+- Regenerated baseline reports.
+- Verified tests, lint, report existence, and claim-boundary wording.

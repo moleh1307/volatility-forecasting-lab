@@ -10,7 +10,7 @@ The project starts conservatively: build trustworthy data, target, baseline, and
 | --- | --- |
 | Data pipeline | V0 `yfinance` adjusted-close cache and source manifest |
 | Market panel | SPY, QQQ, IWM, GLD, TLT |
-| Target | Next-day realized volatility |
+| Targets | Next-day and next-week realized volatility |
 | Validation | Time-ordered validation slice from 2020-01-01 |
 | Baselines | Lagged absolute return and expanding mean absolute return |
 | ML models | Deferred until baseline methodology is solid |
@@ -20,7 +20,7 @@ The project starts conservatively: build trustworthy data, target, baseline, and
 
 - V0 panel: SPY, QQQ, IWM, GLD, TLT
 - Data: free/no-key public market data via `yfinance`
-- Initial targets: next-day realized volatility, with horizon-aware design for next-week targets
+- Initial targets: next-day and next-week realized volatility
 - Milestone 1: data pipeline, target construction, baseline forecasts, validation protocol, honest evaluation report
 
 ## Non-Goals
@@ -46,7 +46,8 @@ Generated data caches live under `data/` and are ignored by git. Generated repor
 
 ## Outputs And Docs
 
-- Baseline report: [`artifacts/reports/baseline_next_day_report.md`](artifacts/reports/baseline_next_day_report.md)
+- Next-day baseline report: [`artifacts/reports/baseline_next_day_report.md`](artifacts/reports/baseline_next_day_report.md)
+- Next-week baseline report: [`artifacts/reports/baseline_next_week_report.md`](artifacts/reports/baseline_next_week_report.md)
 - Target definitions: [`docs/target-definitions.md`](docs/target-definitions.md)
 - Validation protocol: [`docs/validation-protocol.md`](docs/validation-protocol.md)
 - Target/leakage review: [`docs/target-leakage-review.md`](docs/target-leakage-review.md)
@@ -67,4 +68,4 @@ company/        JarvisOS project state and work orders
 
 ## Interpretation Boundary
 
-The current report compares forecast errors for simple baselines on the same target and validation slice. Lower error is better for that diagnostic only. It does not imply a useful trading signal, model superiority, alpha, or investment performance.
+The current reports compare forecast errors for simple baselines within a fixed horizon, target definition, ticker, and validation slice. Lower error is better for that diagnostic only. It does not imply a useful trading signal, model superiority, alpha, or investment performance.

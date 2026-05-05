@@ -6,17 +6,28 @@ from volatility_forecasting_lab.evaluation import evaluate_forecasts, validation
 from volatility_forecasting_lab.features import (
     daily_log_returns,
     expanding_mean_vol_forecast,
+    forward_realized_volatility,
     lagged_abs_return_forecast,
-    next_day_realized_volatility,
 )
+
+HORIZONS = {
+    "next_day": {
+        "window": 1,
+        "label": "Next-Day",
+        "description": "next-day annualized realized volatility",
+    },
+    "next_week": {
+        "window": 5,
+        "label": "Next-Week",
+        "description": "overlapping five-trading-day annualized realized volatility",
+    },
+}
 
 
 def main() -> None:
     config = load_config()
     prices = load_adjusted_prices()
     returns = daily_log_returns(prices)
-    target = next_day_realized_volatility(returns, config.annualization_days)
-
     forecasts = {
         "lagged_abs_return": lagged_abs_return_forecast(returns, config.annualization_days),
         "expanding_mean_abs_return": expanding_mean_vol_forecast(
@@ -24,32 +35,54 @@ def main() -> None:
             annualization_days=config.annualization_days,
         ),
     }
-    metrics = evaluate_forecasts(
-        validation_slice(target, config.validation_start),
-        {
-            name: validation_slice(frame, config.validation_start)
-            for name, frame in forecasts.items()
-        },
-    )
 
     output_dir = Path("artifacts/reports")
     output_dir.mkdir(parents=True, exist_ok=True)
-    metrics.to_csv(output_dir / "baseline_next_day_metrics.csv", index=False)
-    (output_dir / "baseline_next_day_report.md").write_text(
-        _render_report(metrics, config.validation_start)
-    )
-    print(f"Wrote {len(metrics)} metric rows to {output_dir / 'baseline_next_day_metrics.csv'}")
+
+    for horizon_name, horizon_config in HORIZONS.items():
+        target = forward_realized_volatility(
+            returns,
+            horizon=horizon_config["window"],
+            annualization_days=config.annualization_days,
+        )
+        metrics = evaluate_forecasts(
+            validation_slice(target, config.validation_start),
+            {
+                name: validation_slice(frame, config.validation_start)
+                for name, frame in forecasts.items()
+            },
+        )
+        metrics_path = output_dir / f"baseline_{horizon_name}_metrics.csv"
+        report_path = output_dir / f"baseline_{horizon_name}_report.md"
+        metrics.to_csv(metrics_path, index=False)
+        report_path.write_text(
+            _render_report(
+                metrics=metrics,
+                validation_start=config.validation_start,
+                horizon_label=horizon_config["label"],
+                target_description=horizon_config["description"],
+                horizon_window=horizon_config["window"],
+            )
+        )
+        print(f"Wrote {len(metrics)} metric rows to {metrics_path}")
 
 
-def _render_report(metrics, validation_start: str) -> str:
+def _render_report(
+    metrics,
+    validation_start: str,
+    horizon_label: str,
+    target_description: str,
+    horizon_window: int,
+) -> str:
     return "\n".join(
         [
-            "# Baseline Next-Day Volatility Forecast Evaluation",
+            f"# Baseline {horizon_label} Volatility Forecast Evaluation",
             "",
             f"Validation slice starts at `{validation_start}`.",
+            f"Target horizon: `{horizon_window}` trading day(s).",
             "",
-            "This report compares simple baseline forecasts for next-day annualized realized "
-            "volatility. It is a methodology scaffold, not an investment or trading result.",
+            f"This report compares simple baseline forecasts for {target_description}. "
+            "It is a methodology scaffold, not an investment or trading result.",
             "",
             "Lower MAE/RMSE indicates lower forecast error within this target, date range, "
             "and ticker only. The table should not be read across horizons or as a trading "

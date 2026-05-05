@@ -9,6 +9,7 @@
 ## Reports
 
 - [Baseline next-day volatility forecast evaluation](../artifacts/reports/baseline_next_day_report.md)
+- [Baseline next-week volatility forecast evaluation](../artifacts/reports/baseline_next_week_report.md)
 
 ## Read First
 
@@ -19,6 +20,7 @@ For the current milestone, read in this order:
 3. `docs/validation-protocol.md`
 4. `docs/target-leakage-review.md`
 5. `artifacts/reports/baseline_next_day_report.md`
+6. `artifacts/reports/baseline_next_week_report.md`
 
 ## Claim Boundary
 

@@ -46,3 +46,26 @@ def test_forward_realized_volatility_uses_future_window_only() -> None:
     assert np.isclose(target.iloc[1]["SPY"], expected_second)
     assert np.isnan(target.iloc[2]["SPY"])
     assert np.isnan(target.iloc[3]["SPY"])
+
+
+def test_five_day_forward_realized_volatility_leaves_last_five_rows_missing() -> None:
+    returns = pd.DataFrame(
+        {"SPY": [0.01, -0.02, 0.03, -0.04, 0.05, -0.06, 0.07]},
+        index=pd.date_range("2024-01-01", periods=7),
+    )
+
+    target = forward_realized_volatility(returns, horizon=5, annualization_days=252)
+
+    expected_first = np.sqrt(
+        ((-0.02) ** 2 + 0.03**2 + (-0.04) ** 2 + 0.05**2 + (-0.06) ** 2)
+        * 252
+        / 5
+    )
+    expected_second = np.sqrt(
+        (0.03**2 + (-0.04) ** 2 + 0.05**2 + (-0.06) ** 2 + 0.07**2)
+        * 252
+        / 5
+    )
+    assert np.isclose(target.iloc[0]["SPY"], expected_first)
+    assert np.isclose(target.iloc[1]["SPY"], expected_second)
+    assert target.iloc[2:]["SPY"].isna().all()
