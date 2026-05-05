@@ -16,6 +16,7 @@ from volatility_forecasting_lab.features import (
     daily_log_returns,
     expanding_mean_vol_forecast,
     forward_realized_volatility,
+    garch_vol_forecast,
     har_realized_vol_forecast,
     hist_gradient_boosting_vol_forecast,
     lagged_abs_return_forecast,
@@ -36,7 +37,10 @@ HORIZONS = {
 
 BOOTSTRAP_COMPARISONS = [
     ("hist_gradient_boosting", "har_daily_weekly_monthly"),
+    ("hist_gradient_boosting", "garch_1_1"),
+    ("garch_1_1", "har_daily_weekly_monthly"),
     ("hist_gradient_boosting", "expanding_mean_abs_return"),
+    ("garch_1_1", "expanding_mean_abs_return"),
     ("har_daily_weekly_monthly", "expanding_mean_abs_return"),
 ]
 
@@ -75,6 +79,15 @@ def main() -> None:
                 har_realized_vol_forecast(
                     returns,
                     horizon=horizon_config["window"],
+                    annualization_days=config.annualization_days,
+                ),
+                config.validation_start,
+            ),
+            "garch_1_1": validation_slice(
+                garch_vol_forecast(
+                    returns,
+                    horizon=horizon_config["window"],
+                    validation_start=config.validation_start,
                     annualization_days=config.annualization_days,
                 ),
                 config.validation_start,
@@ -185,6 +198,10 @@ def _render_report(
             (
                 "- The HAR-style baseline is an expanding-window OLS statistical benchmark; "
                 "it is not an optimized ML model or trading strategy."
+            ),
+            (
+                "- The GARCH(1,1) row is an annual-refit econometric volatility baseline "
+                "estimated from daily returns, not a trading strategy."
             ),
             (
                 "- The histogram gradient boosting row is a modest scikit-learn ML baseline "

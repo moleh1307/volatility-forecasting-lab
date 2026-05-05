@@ -10,7 +10,7 @@
 
 ## Waiting User Decision
 
-- Create `v0.3.0-milestone-3`, continue locally, or pause.
+- Run Milestone 4 release readiness, continue diagnostic refinement, or pause.
 
 ## Done
 
@@ -33,6 +33,8 @@
 - VFL-017 - Implement block-bootstrap error-difference diagnostics.
 - VFL-018 - Review Milestone 3 evidence and update public summary.
 - VFL-019 - Milestone 3 release readiness check.
+- VFL-020 - Add GARCH econometric baseline.
+- VFL-021 - Review Milestone 4 model-comparison evidence.
 
 ## Planned
 

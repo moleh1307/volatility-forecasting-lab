@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import numpy as np
 import pandas as pd
+from arch import arch_model
 from sklearn.ensemble import HistGradientBoostingRegressor
 
 
@@ -132,6 +133,67 @@ def hist_gradient_boosting_vol_forecast(
 
             if model is not None:
                 forecasts.at[row_date, ticker] = float(model.predict(current_features)[0])
+
+    return forecasts
+
+
+def garch_vol_forecast(
+    returns: pd.DataFrame,
+    horizon: int,
+    validation_start: str,
+    min_train_size: int = 756,
+    refit_frequency: int = 252,
+    annualization_days: int = 252,
+) -> pd.DataFrame:
+    if horizon < 1:
+        raise ValueError("horizon must be at least 1")
+
+    forecasts = pd.DataFrame(index=returns.index, columns=returns.columns, dtype=float)
+    validation_start_ts = pd.Timestamp(validation_start)
+
+    for ticker in returns.columns:
+        model_result = None
+        last_fit_position: int | None = None
+        ticker_returns = returns[ticker].dropna()
+
+        for row_position, row_date in enumerate(returns.index):
+            if row_date < validation_start_ts:
+                continue
+            if row_position + 1 < min_train_size:
+                continue
+
+            should_refit = (
+                model_result is None
+                or last_fit_position is None
+                or row_position - last_fit_position >= refit_frequency
+            )
+            if should_refit:
+                train_returns = ticker_returns.loc[:row_date].dropna()
+                if len(train_returns) < min_train_size:
+                    continue
+
+                # Scale decimal returns to percentages for ARCH optimizer stability.
+                model = arch_model(
+                    train_returns * 100,
+                    mean="Constant",
+                    vol="GARCH",
+                    p=1,
+                    q=1,
+                    dist="normal",
+                    rescale=False,
+                )
+                model_result = model.fit(disp="off", show_warning=False)
+                last_fit_position = row_position
+
+            if model_result is None:
+                continue
+
+            variance_percent = model_result.forecast(horizon=horizon, reindex=False).variance
+            daily_variance_decimal = variance_percent.iloc[-1].to_numpy(dtype=float) / 10000
+            horizon_variance = daily_variance_decimal.mean()
+            forecasts.at[row_date, ticker] = float(
+                np.sqrt(horizon_variance * annualization_days)
+            )
 
     return forecasts
 

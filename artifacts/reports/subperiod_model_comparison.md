@@ -17,17 +17,21 @@ The counts below are forecast-error diagnostics only. They are not trading, allo
 
 | horizon   | metric   | best_model                |   subperiod_ticker_wins |
 |:----------|:---------|:--------------------------|------------------------:|
-| next_day  | mae      | expanding_mean_abs_return |                       6 |
-| next_day  | mae      | har_daily_weekly_monthly  |                       8 |
-| next_day  | mae      | hist_gradient_boosting    |                      21 |
-| next_day  | rmse     | expanding_mean_abs_return |                       5 |
+| next_day  | mae      | expanding_mean_abs_return |                       5 |
+| next_day  | mae      | garch_1_1                 |                       4 |
+| next_day  | mae      | har_daily_weekly_monthly  |                       7 |
+| next_day  | mae      | hist_gradient_boosting    |                      19 |
+| next_day  | rmse     | expanding_mean_abs_return |                       4 |
+| next_day  | rmse     | garch_1_1                 |                       1 |
 | next_day  | rmse     | har_daily_weekly_monthly  |                      13 |
 | next_day  | rmse     | hist_gradient_boosting    |                      17 |
 | next_week | mae      | expanding_mean_abs_return |                       5 |
-| next_week | mae      | har_daily_weekly_monthly  |                      12 |
+| next_week | mae      | garch_1_1                 |                       1 |
+| next_week | mae      | har_daily_weekly_monthly  |                      11 |
 | next_week | mae      | hist_gradient_boosting    |                      18 |
 | next_week | rmse     | expanding_mean_abs_return |                       3 |
-| next_week | rmse     | har_daily_weekly_monthly  |                      12 |
+| next_week | rmse     | garch_1_1                 |                       1 |
+| next_week | rmse     | har_daily_weekly_monthly  |                      11 |
 | next_week | rmse     | hist_gradient_boosting    |                      20 |
 
 ## Interpretation

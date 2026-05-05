@@ -10,22 +10,27 @@ Lower MAE/RMSE indicates lower forecast error within this target, date range, an
 | model                     | ticker   |   observations |      mae |     rmse |      bias |
 |:--------------------------|:---------|---------------:|---------:|---------:|----------:|
 | expanding_mean_abs_return | GLD      |           1591 | 0.085858 | 0.128926 | -0.016056 |
+| garch_1_1                 | GLD      |           1591 | 0.090265 | 0.126549 |  0.006400 |
 | har_daily_weekly_monthly  | GLD      |           1591 | 0.084241 | 0.121309 | -0.005501 |
 | hist_gradient_boosting    | GLD      |           1591 | 0.083492 | 0.120759 | -0.008271 |
 | lagged_abs_return         | GLD      |           1591 | 0.113961 | 0.166360 | -0.000129 |
 | expanding_mean_abs_return | IWM      |           1591 | 0.120798 | 0.188064 | -0.034691 |
+| garch_1_1                 | IWM      |           1591 | 0.130637 | 0.195297 | -0.009713 |
 | har_daily_weekly_monthly  | IWM      |           1591 | 0.118749 | 0.168679 | -0.006792 |
 | hist_gradient_boosting    | IWM      |           1591 | 0.116206 | 0.170303 | -0.021105 |
 | lagged_abs_return         | IWM      |           1591 | 0.157980 | 0.225749 | -0.000044 |
 | expanding_mean_abs_return | QQQ      |           1591 | 0.118457 | 0.183529 | -0.036366 |
+| garch_1_1                 | QQQ      |           1591 | 0.125182 | 0.184230 | -0.009625 |
 | har_daily_weekly_monthly  | QQQ      |           1591 | 0.113585 | 0.162957 | -0.008226 |
 | hist_gradient_boosting    | QQQ      |           1591 | 0.111943 | 0.166122 | -0.023369 |
 | lagged_abs_return         | QQQ      |           1591 | 0.154746 | 0.218232 |  0.000146 |
 | expanding_mean_abs_return | SPY      |           1591 | 0.093745 | 0.157020 | -0.021221 |
+| garch_1_1                 | SPY      |           1591 | 0.098249 | 0.159534 | -0.013067 |
 | har_daily_weekly_monthly  | SPY      |           1591 | 0.087497 | 0.133195 | -0.004091 |
 | hist_gradient_boosting    | SPY      |           1591 | 0.085854 | 0.138451 | -0.015703 |
 | lagged_abs_return         | SPY      |           1591 | 0.116621 | 0.175295 |  0.000056 |
 | expanding_mean_abs_return | TLT      |           1591 | 0.076525 | 0.112116 | -0.014033 |
+| garch_1_1                 | TLT      |           1591 | 0.083788 | 0.114300 |  0.014959 |
 | har_daily_weekly_monthly  | TLT      |           1591 | 0.074629 | 0.103317 | -0.003794 |
 | hist_gradient_boosting    | TLT      |           1591 | 0.074001 | 0.104981 | -0.008245 |
 | lagged_abs_return         | TLT      |           1591 | 0.098389 | 0.132703 |  0.000036 |
@@ -35,5 +40,6 @@ Lower MAE/RMSE indicates lower forecast error within this target, date range, an
 - yfinance data is a free public-data source and can be revised.
 - Baselines are intentionally simple and are not tuned for performance claims.
 - The HAR-style baseline is an expanding-window OLS statistical benchmark; it is not an optimized ML model or trading strategy.
+- The GARCH(1,1) row is an annual-refit econometric volatility baseline estimated from daily returns, not a trading strategy.
 - The histogram gradient boosting row is a modest scikit-learn ML baseline with annual expanding-window refits, not a tuned model selection result.
 - Metrics describe forecast errors only; they are not trading, allocation, or alpha metrics.

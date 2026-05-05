@@ -12,7 +12,7 @@ The project starts conservatively: build trustworthy data, target, baseline, and
 | Market panel | SPY, QQQ, IWM, GLD, TLT |
 | Targets | Next-day and next-week realized volatility |
 | Validation | Time-ordered validation slice from 2020-01-01 |
-| Baselines | Lagged absolute return, expanding mean absolute return, HAR-style statistical baseline |
+| Baselines | Lagged absolute return, expanding mean absolute return, HAR-style and GARCH-style econometric baselines |
 | ML models | First modest scikit-learn baseline added |
 | GitHub publication | Public repository on GitHub |
 | License | MIT |
@@ -61,6 +61,8 @@ Generated data caches live under `data/` and are ignored by git. Generated repor
 - Milestone 3 plan: [`docs/milestone-3-plan.md`](docs/milestone-3-plan.md)
 - Milestone 3 summary: [`docs/milestone-3-summary.md`](docs/milestone-3-summary.md)
 - Milestone 3 release readiness: [`docs/milestone-3-release-readiness.md`](docs/milestone-3-release-readiness.md)
+- Milestone 4 plan: [`docs/milestone-4-plan.md`](docs/milestone-4-plan.md)
+- Milestone 4 comparison review: [`docs/milestone-4-comparison-review.md`](docs/milestone-4-comparison-review.md)
 - Robustness and uncertainty protocol: [`docs/robustness-uncertainty-protocol.md`](docs/robustness-uncertainty-protocol.md)
 - ML comparison review: [`docs/ml-comparison-review.md`](docs/ml-comparison-review.md)
 - Subperiod stability review: [`docs/subperiod-stability-review.md`](docs/subperiod-stability-review.md)
@@ -87,6 +89,8 @@ The first ML baseline is included for diagnostic comparison. Current results sho
 Milestone 2 summary: the repo now includes a first leakage-safe ML baseline. Results provide useful diagnostic contrast against statistical baselines, but the evidence is mixed across metrics and horizons.
 
 Milestone 3 adds robustness diagnostics. The rolling-window ranking report shows time variation in best-model rankings, and the block-bootstrap report adds pairwise forecast-error uncertainty intervals. These diagnostics support a more careful comparison, not a broad winner claim.
+
+Milestone 4 adds a GARCH(1,1) econometric baseline. It improves the benchmark set, but current GARCH results do not dominate HAR or the first ML baseline.
 
 ## License
 
