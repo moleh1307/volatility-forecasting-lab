@@ -9,6 +9,7 @@
 - [Milestone 2 summary](milestone-2-summary.md)
 - [Milestone 2 release readiness](milestone-2-release-readiness.md)
 - [Milestone 3 plan](milestone-3-plan.md)
+- [Robustness and uncertainty protocol](robustness-uncertainty-protocol.md)
 - [ML feature contract](ml-feature-contract.md)
 - [ML comparison review](ml-comparison-review.md)
 - [Subperiod stability review](subperiod-stability-review.md)
@@ -17,6 +18,7 @@
 
 - [Baseline next-day volatility forecast evaluation](../artifacts/reports/baseline_next_day_report.md)
 - [Baseline next-week volatility forecast evaluation](../artifacts/reports/baseline_next_week_report.md)
+- [Rolling-window model ranking](../artifacts/reports/rolling_window_model_ranking.md)
 
 ## Read First
 
@@ -30,12 +32,14 @@ For the current milestone, read in this order:
 6. `docs/milestone-2-summary.md`
 7. `docs/milestone-2-release-readiness.md`
 8. `docs/milestone-3-plan.md`
-9. `docs/ml-feature-contract.md`
-10. `docs/ml-comparison-review.md`
-11. `docs/subperiod-stability-review.md`
-12. `artifacts/reports/baseline_next_day_report.md`
-13. `artifacts/reports/baseline_next_week_report.md`
-14. `artifacts/reports/subperiod_model_comparison.md`
+9. `docs/robustness-uncertainty-protocol.md`
+10. `docs/ml-feature-contract.md`
+11. `docs/ml-comparison-review.md`
+12. `docs/subperiod-stability-review.md`
+13. `artifacts/reports/baseline_next_day_report.md`
+14. `artifacts/reports/baseline_next_week_report.md`
+15. `artifacts/reports/subperiod_model_comparison.md`
+16. `artifacts/reports/rolling_window_model_ranking.md`
 
 ## Claim Boundary
 

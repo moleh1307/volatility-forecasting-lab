@@ -2,7 +2,7 @@
 
 ## Active
 
-- VFL-015 - Design robustness and uncertainty protocol.
+- VFL-017 - Implement block-bootstrap error-difference diagnostics.
 
 ## Ready
 
@@ -28,11 +28,11 @@
 - VFL-012 - Decide Milestone 2 public summary or next validation diagnostic.
 - VFL-013 - Milestone 2 release readiness check.
 - VFL-014 - Create release tag v0.2.0-milestone-2.
+- VFL-015 - Design robustness and uncertainty protocol.
+- VFL-016 - Implement rolling-window ranking diagnostics.
 
 ## Planned
 
-- VFL-016 - Implement rolling-window ranking diagnostics.
-- VFL-017 - Implement block-bootstrap error-difference diagnostics.
 - VFL-018 - Review Milestone 3 evidence and update public summary.
 
 ## Blocked

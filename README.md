@@ -49,6 +49,7 @@ Generated data caches live under `data/` and are ignored by git. Generated repor
 
 - Next-day baseline report: [`artifacts/reports/baseline_next_day_report.md`](artifacts/reports/baseline_next_day_report.md)
 - Next-week baseline report: [`artifacts/reports/baseline_next_week_report.md`](artifacts/reports/baseline_next_week_report.md)
+- Rolling-window ranking report: [`artifacts/reports/rolling_window_model_ranking.md`](artifacts/reports/rolling_window_model_ranking.md)
 - Target definitions: [`docs/target-definitions.md`](docs/target-definitions.md)
 - Validation protocol: [`docs/validation-protocol.md`](docs/validation-protocol.md)
 - Target/leakage review: [`docs/target-leakage-review.md`](docs/target-leakage-review.md)
@@ -57,6 +58,7 @@ Generated data caches live under `data/` and are ignored by git. Generated repor
 - Milestone 2 summary: [`docs/milestone-2-summary.md`](docs/milestone-2-summary.md)
 - Milestone 2 release readiness: [`docs/milestone-2-release-readiness.md`](docs/milestone-2-release-readiness.md)
 - Milestone 3 plan: [`docs/milestone-3-plan.md`](docs/milestone-3-plan.md)
+- Robustness and uncertainty protocol: [`docs/robustness-uncertainty-protocol.md`](docs/robustness-uncertainty-protocol.md)
 - ML comparison review: [`docs/ml-comparison-review.md`](docs/ml-comparison-review.md)
 - Subperiod stability review: [`docs/subperiod-stability-review.md`](docs/subperiod-stability-review.md)
 
@@ -80,6 +82,8 @@ The current reports compare forecast errors for baseline methods within a fixed 
 The first ML baseline is included for diagnostic comparison. Current results should be read as mixed forecast-error evidence, not as proof that ML is superior to econometric/statistical baselines.
 
 Milestone 2 summary: the repo now includes a first leakage-safe ML baseline. Results provide useful diagnostic contrast against statistical baselines, but the evidence is mixed across metrics and horizons.
+
+Milestone 3 has started adding robustness diagnostics. The rolling-window ranking report shows time variation in best-model rankings and should be read as stability evidence, not as a broad winner claim.
 
 ## License
 

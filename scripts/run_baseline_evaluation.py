@@ -7,6 +7,8 @@ from volatility_forecasting_lab.data import load_adjusted_prices
 from volatility_forecasting_lab.evaluation import (
     evaluate_forecasts,
     evaluate_forecasts_by_period,
+    forecast_error_panel,
+    rolling_window_model_ranking,
     validation_slice,
 )
 from volatility_forecasting_lab.features import (
@@ -49,6 +51,7 @@ def main() -> None:
 
     period_metrics_by_horizon = {}
     full_metrics_by_horizon = {}
+    error_panels = []
 
     for horizon_name, horizon_config in HORIZONS.items():
         target = forward_realized_volatility(
@@ -85,6 +88,13 @@ def main() -> None:
             horizon_forecasts,
         )
         period_metrics = evaluate_forecasts_by_period(validation_target, horizon_forecasts)
+        error_panels.append(
+            forecast_error_panel(
+                validation_target,
+                horizon_forecasts,
+                horizon=horizon_name,
+            )
+        )
         period_metrics.insert(0, "horizon", horizon_name)
         metrics.insert(0, "horizon", horizon_name)
         period_metrics_by_horizon[horizon_name] = period_metrics
@@ -111,6 +121,18 @@ def main() -> None:
     print(
         f"Wrote {len(all_period_metrics)} rows to "
         f"{output_dir / 'subperiod_model_comparison.csv'}"
+    )
+
+    all_errors = pd.concat(error_panels, ignore_index=True)
+    all_errors.to_csv(output_dir / "forecast_error_panel.csv", index=False)
+    rolling_rankings = rolling_window_model_ranking(all_errors)
+    rolling_rankings.to_csv(output_dir / "rolling_window_model_ranking.csv", index=False)
+    (output_dir / "rolling_window_model_ranking.md").write_text(
+        _render_rolling_window_report(rolling_rankings)
+    )
+    print(
+        f"Wrote {len(rolling_rankings)} rows to "
+        f"{output_dir / 'rolling_window_model_ranking.csv'}"
     )
 
 
@@ -218,6 +240,71 @@ def _render_subperiod_report(period_metrics, full_metrics_by_horizon) -> str:
             "Model behavior is mixed across metrics and horizons. The ML baseline is useful "
             "as a diagnostic comparison row, but the subperiod view should not be read as "
             "evidence of robust model superiority.",
+        ]
+    )
+
+
+def _render_rolling_window_report(rankings) -> str:
+    if rankings.empty:
+        return "\n".join(
+            [
+                "# Rolling-Window Model Ranking",
+                "",
+                "No rolling-window rankings were generated. Check the configured window length, "
+                "validation span, and minimum-observation threshold.",
+            ]
+        )
+
+    best_models = rankings[rankings["rank"] == 1]
+    best_counts = (
+        best_models.groupby(["horizon", "metric", "model"])
+        .size()
+        .reset_index(name="rolling_window_wins")
+        .sort_values(["horizon", "metric", "model"])
+    )
+    average_rank = (
+        rankings.groupby(["horizon", "metric", "model"])["rank"]
+        .mean()
+        .reset_index(name="average_rank")
+        .sort_values(["horizon", "metric", "average_rank", "model"])
+    )
+    instability = (
+        best_models.groupby(["horizon", "ticker", "metric"])["model"]
+        .nunique()
+        .reset_index(name="distinct_best_models")
+        .sort_values(["horizon", "ticker", "metric"])
+    )
+    instability["best_model_changed"] = instability["distinct_best_models"] > 1
+
+    return "\n".join(
+        [
+            "# Rolling-Window Model Ranking",
+            "",
+            "This report checks whether model rankings are stable across rolling validation "
+            "windows. Windows use 252 trading days, step forward by 21 trading days, and "
+            "require at least 126 observations per model.",
+            "",
+            "Lower MAE/RMSE ranks better inside a given horizon, ticker, metric, and window. "
+            "These are forecast-error diagnostics only, not trading, allocation, alpha, or "
+            "investment results.",
+            "",
+            "## Best-Model Counts",
+            "",
+            best_counts.to_markdown(index=False),
+            "",
+            "## Average Rank",
+            "",
+            average_rank.to_markdown(index=False, floatfmt=".3f"),
+            "",
+            "## Best-Model Instability Flags",
+            "",
+            instability.to_markdown(index=False),
+            "",
+            "## Interpretation",
+            "",
+            "Rolling-window rankings are intended to expose time variation in forecast-error "
+            "behavior. A higher win count or lower average rank should not be compressed into "
+            "a broad model-superiority claim without matching uncertainty evidence.",
         ]
     )
 
