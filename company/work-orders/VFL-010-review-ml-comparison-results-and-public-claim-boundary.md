@@ -2,7 +2,7 @@
 
 ## Status
 
-Active
+Done
 
 ## Objective
 
@@ -21,3 +21,10 @@ Review the first ML comparison results and public wording before treating Milest
 - Any suspicious result or caveat is documented.
 - Claim-boundary scan passes.
 - Tests, lint, and report regeneration pass.
+
+## Closeout Evidence
+
+- Added `docs/ml-comparison-review.md`.
+- Review documents that ML improves MAE versus HAR in 5/5 next-day tickers and 4/5 next-week tickers, but improves RMSE in only 1/5 tickers for each horizon.
+- README and docs preserve the no model-superiority claim boundary.
+- Verified tests, lint, report regeneration, and claim-boundary scan.

@@ -2,11 +2,11 @@
 
 ## Active
 
-- VFL-010 - Review ML comparison results and public claim boundary.
+- None.
 
 ## Ready
 
-- None.
+- VFL-011 - Add rolling subperiod comparison summary.
 
 ## Waiting User Decision
 
@@ -23,6 +23,7 @@
 - VFL-004 - Decide public GitHub creation/push after first credible baseline.
 - VFL-008 - Build ML Feature Matrix.
 - VFL-009 - Add first scikit-learn ML baseline.
+- VFL-010 - Review ML comparison results and public claim boundary.
 
 ## Planned
 

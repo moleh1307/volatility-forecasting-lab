@@ -54,6 +54,7 @@ Generated data caches live under `data/` and are ignored by git. Generated repor
 - Target/leakage review: [`docs/target-leakage-review.md`](docs/target-leakage-review.md)
 - Documentation index: [`docs/index.md`](docs/index.md)
 - Milestone 2 plan: [`docs/milestone-2-plan.md`](docs/milestone-2-plan.md)
+- ML comparison review: [`docs/ml-comparison-review.md`](docs/ml-comparison-review.md)
 
 ## Repository Layout
 
@@ -71,6 +72,8 @@ company/        JarvisOS project state and work orders
 ## Interpretation Boundary
 
 The current reports compare forecast errors for baseline methods within a fixed horizon, target definition, ticker, and validation slice. Lower error is better for that diagnostic only. It does not imply a useful trading signal, model superiority, alpha, or investment performance.
+
+The first ML baseline is included for diagnostic comparison. Current results should be read as mixed forecast-error evidence, not as proof that ML is superior to econometric/statistical baselines.
 
 ## License
 

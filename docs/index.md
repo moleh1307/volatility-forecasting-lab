@@ -7,6 +7,7 @@
 - [Target and leakage review](target-leakage-review.md)
 - [Milestone 2 plan](milestone-2-plan.md)
 - [ML feature contract](ml-feature-contract.md)
+- [ML comparison review](ml-comparison-review.md)
 
 ## Reports
 
@@ -23,8 +24,9 @@ For the current milestone, read in this order:
 4. `docs/target-leakage-review.md`
 5. `docs/milestone-2-plan.md`
 6. `docs/ml-feature-contract.md`
-7. `artifacts/reports/baseline_next_day_report.md`
-8. `artifacts/reports/baseline_next_week_report.md`
+7. `docs/ml-comparison-review.md`
+8. `artifacts/reports/baseline_next_day_report.md`
+9. `artifacts/reports/baseline_next_week_report.md`
 
 ## Claim Boundary
 

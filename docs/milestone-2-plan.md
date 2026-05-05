@@ -76,3 +76,7 @@ The initial ML feature contract is now documented in `docs/ml-feature-contract.m
 ## VFL-009 Update
 
 The first ML baseline is a modest `HistGradientBoostingRegressor` with annual expanding-window refits. It is included as a diagnostic ML comparison row, not as a tuned model-selection result.
+
+## VFL-010 Update
+
+The first ML comparison review is documented in `docs/ml-comparison-review.md`. The result is mixed: the ML row often improves MAE versus HAR, but it does not consistently improve RMSE.
